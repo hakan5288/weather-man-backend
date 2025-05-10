@@ -8,7 +8,7 @@ async function bootstrap() {
   app.enableCors({
     origin: 'https://main.d3g541h41hp0zb.amplifyapp.com',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: 'Content-Type, Authorization',
+   allowedHeaders: 'Content-Type, Authorization, Cookie',
     credentials: true, // Required for cookies
   });
   app.useGlobalFilters(new ValidationFilter());

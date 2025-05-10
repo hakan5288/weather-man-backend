@@ -30,7 +30,13 @@ export class AuthController {
       signupDto.password,
       signupDto.name,
     );
-    res.cookie('token', result.access_token, { httpOnly: true });
+    res.cookie('token', result.access_token, {
+      httpOnly: true,
+      secure: true, // Ensure cookie is sent over HTTPS
+      sameSite: 'none', // Allow cross-site requests
+      partitioned: true, // Comply with CHIPS
+      maxAge: 24 * 60 * 60 * 1000, // 1 day expiration
+    });
     return res.status(201).json(result);
   }
 
@@ -40,10 +46,16 @@ export class AuthController {
       loginDto.email,
       loginDto.password,
     );
-    res.cookie('token', result.access_token, { httpOnly: true });
+    res.cookie('token', result.access_token, {
+      httpOnly: true,
+      secure: true, // Ensure cookie is sent over HTTPS
+      sameSite: 'none', // Allow cross-site requests
+      partitioned: true, // Comply with CHIPS
+      maxAge: 24 * 60 * 60 * 1000, // 1 day expiration
+    });
     return res.status(200).json({
       status: 'success',
-      message: 'Login successfull',
+      message: 'Login successful',
       data: {
         access_token: result.access_token,
       },
@@ -54,8 +66,9 @@ export class AuthController {
   async logout(@Res() res: Response) {
     res.clearCookie('token', {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: true, // Match login/signup attributes
+      sameSite: 'none', // Match login/signup attributes
+      partitioned: true, // Match login/signup attributes
     });
     return res.json({
       status: 'success',

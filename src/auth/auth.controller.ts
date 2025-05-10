@@ -34,7 +34,7 @@ export class AuthController {
     res.cookie('token', result.access_token, {
       httpOnly: true,
       secure: true,              // Required for HTTPS
-      sameSite: 'None',          // Required for cross-site
+      sameSite: 'none',          // Required for cross-site
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
 
@@ -54,7 +54,7 @@ export class AuthController {
     res.cookie('token', result.access_token, {
       httpOnly: true,
       secure: true,
-      sameSite: 'None',
+      sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000,
     });
 
@@ -72,7 +72,7 @@ export class AuthController {
     res.clearCookie('token', {
       httpOnly: true,
       secure: true,
-      sameSite: 'None',
+      sameSite: 'none',
     });
 
     return res.json({

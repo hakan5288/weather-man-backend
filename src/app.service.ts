@@ -3,6 +3,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Hello World! this is test deployment for github';
+    return 'Hello World! this is test deployment for github for ci/cd pipeline';
   }
 }

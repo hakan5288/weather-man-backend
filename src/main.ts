@@ -6,7 +6,7 @@ import * as cookieParser from 'cookie-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: ['https://main.d3g541h41hp0zb.amplifyapp.com', 'https://weather-man-frontend.vercel.app'],
+    origin: ['https://main.d3g541h41hp0zb.amplifyapp.com', 'https://weather-man-frontend.vercel.app' , 'http://localhost:3000'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
    allowedHeaders: 'Content-Type, Authorization, Cookie',
     credentials: true, // Required for cookies
